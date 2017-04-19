@@ -64,8 +64,16 @@ io.sockets.on('connection', function(socket) {
             // allArrays.push(paperWinners);
             // allArrays.push(scissorWinners);
 
+            console.log(allArrays.length + " arrays in array");
+
+            console.log(allArrays[0].length + " rocks");
+            console.log(allArrays[1].length + " papers");
+            console.log(allArrays[2].length + " scissors");
+
             for (arr in allArrays) {
                 console.log("array has " + arr.length);
+                console.log(arr.name);
+                console.log(arr);
                 if (arr.length > 1) {
                     console.log("tie");
                 }
