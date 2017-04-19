@@ -53,6 +53,34 @@ io.sockets.on('connection', function(socket) {
         }
 
         if (submits == players.length) {
+
+            for (var x = 0; x < players.length; x++) {
+                for (var y = 0; y < players.length; y++) {
+                    if (players[x] != players[y]) {
+                        if (players[x].weapon == players[y].weapon) {
+                            console.log("tie");
+                            break;
+                        }
+                        else if (players[x].weapon == "rock") {
+                            if (players[y].weapon == "paper") {
+                                console.log("Player " + players[y].username + " wins");
+                            } else {
+                                console.log("Player " + players[x].username + " wins");
+                            }
+                        }
+                        else if (players[x].weapon == "paper") {
+                            if (players[y].weapon == "scissors") {
+                                console.log("Player " + players[x].username + " wins");
+                            } else {
+                                console.log("Player " + players[y].username + " wins");
+                            }
+                        }
+                    }
+
+
+                }
+            }
+
             // var rockWinners = [];
             // var paperWinners = [];
             // var scissorWinners = [];
@@ -64,23 +92,33 @@ io.sockets.on('connection', function(socket) {
             // allArrays.push(paperWinners);
             // allArrays.push(scissorWinners);
 
-            console.log(allArrays.length + " arrays in array");
+            // console.log(allArrays.length + " arrays in array");
+            //
+            // console.log(allArrays[0].length + " rocks");
+            // console.log(allArrays[1].length + " papers");
+            // console.log(allArrays[2].length + " scissors");
 
-            console.log(allArrays[0].length + " rocks");
-            console.log(allArrays[1].length + " papers");
-            console.log(allArrays[2].length + " scissors");
 
-            for (var i = 0; i < allArrays.length; i++) {
-                // console.log("array has " + arr.length);
-                // console.log(arr.name);
-                // console.log(arr);
-                if (allArrays[i].length > 1) {
-                    console.log("tie");
-                }
-                else if (allArrays[i].length == 1) {
-                    console.log("Player " + allArrays[i][0].username + " wins!");
-                }
-            }
+
+
+
+            // for (var i = 0; i < allArrays.length; i++) {
+            //     // console.log("array has " + arr.length);
+            //     // console.log(arr.name);
+            //     // console.log(arr);
+            //     if (allArrays[i].length > 1) {
+            //         console.log("tie");
+            //     }
+            //     else if (allArrays[i].length == 1) {
+            //         console.log("Player " + allArrays[i][0].username + " wins!");
+            //     }
+            // }
+
+
+
+
+
+
 
             submits = 0;
 
