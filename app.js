@@ -15,7 +15,7 @@ var io = require('socket.io').listen(server);
 
 io.sockets.on('connection', function(socket) {
     console.log('connection made!');
-    players.add(socket);
+    players.push(socket);
     // Example communication.
     socket.emit('message', 'We are connected!');
 // Broadcast isn't working like this, but doesn't crash anything
@@ -35,9 +35,48 @@ io.sockets.on('connection', function(socket) {
             var paperWinners = [];
             var scissorWinners = [];
 
-            for (socket in players) {
-
+            switch (choice) {
+                case "rock":
+                    rockWinners.push(socket);
+                    break;
+                case "paper":
+                    paperWinners.push(socket);
+                    break;
+                case "scissors":
+                    scissorWinners.push(socket);
+                    break;
             }
+
+            var allArrays = [];
+            allArrays.push(rockWinners);
+            allArrays.push(paperWinners);
+            allArrays.push(scissorWinners);
+
+            for (arr in allArrays) {
+                if (arr.length > 1) {
+                    console.log("tie");
+                }
+                else if (arr.length != 0) {
+                    console.log("Player " + arr[0].username + " wins!");
+                }
+            }
+
+            // if (players[0].weapon == players[1].weapon) {
+            //
+            // }
+            // else if (players[0].weapon == "rock" && players[1].weapon == "paper") {
+            //
+            // }
+            // else if (players[0].weapon == "paper" && players[1].weapon == "scissors") {
+            //
+            // }
+            //
+            // for (var i = 0; i < players.length; i++) {
+            //     if (players[i])
+            //     // for (var i = 0; i < players.length; i++) {
+            //     //
+            //     // }
+            // }
         }
     });
 });
