@@ -2,9 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3cc83060-053e-4ad3-bdfd-4b8f897b7a12" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/boulder-1855581_960_720.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/pile-boulders-vector-illustration-31653973.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/rock-paper-scissors-296853_960_720.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/rock-paper-scissors-296854_960_720.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/rock-paper-scissors-296855_960_720.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/scissors-310134_960_720.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/images/Pierre_ciseaux_feuille_lézard_spock.svg" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app.js" afterPath="$PROJECT_DIR$/app.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -190,6 +195,10 @@
               <option name="myItemId" value="public" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="images" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -327,7 +336,7 @@
       <workItem from="1492354644857" duration="314000" />
       <workItem from="1492355274102" duration="2017000" />
       <workItem from="1492570054885" duration="5001000" />
-      <workItem from="1492608717053" duration="2753000" />
+      <workItem from="1492608717053" duration="3068000" />
     </task>
     <task id="LOCAL-00001" summary="adopted structure from internet source">
       <created>1492573502379</created>
@@ -343,11 +352,18 @@
       <option name="project" value="LOCAL" />
       <updated>1492575123280</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="started adding scoring">
+      <created>1492612248205</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1492612248205</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="10145000" />
+    <option name="totallyTimeSpent" value="10460000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -360,9 +376,8 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="1912" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.10484721" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.10484721" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32936078" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -390,7 +405,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="adopted structure from internet source" />
     <MESSAGE value="laid out buttons and events" />
-    <option name="LAST_COMMIT_MESSAGE" value="laid out buttons and events" />
+    <MESSAGE value="started adding scoring" />
+    <option name="LAST_COMMIT_MESSAGE" value="started adding scoring" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
