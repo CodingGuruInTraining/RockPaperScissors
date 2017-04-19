@@ -14,11 +14,42 @@
     <p>After the countdown from 3 (that is 3, 2, 1, GO to be clear), click on the button corresponding with your weapon of choice.</p>
     <p>Good luck!</p>
 </div>
+
+<div id="buttonDiv">
+    <input type="button" value="Draw" id="drawbtn">
+</div>
+
+<div id="weaponsDiv">
+    <span id="weaponsSpan">
+        <input type="button" value="ROCK" id="rockbtn">
+        <input type="button" value="PAPER" id="paperbtn">
+        <input type="button" value="SCISSORS" id="scissorbtn">
+    </span>
+</div>
 <!--TODO figure out how to move to index.js and still work: -->
 <script src="/socket.io/socket.io.js"></script>
 <script>
     var socket = io.connect('http://localhost:3000');
     var username = prompt('what is your username?');
+    var draw = document.getElementById('drawbtn');
+    var rock = document.getElementById('drawbtn');
+    var paper = document.getElementById('paperbtn');
+    var scissor = document.getElementById('scissorbtn');
+
+    draw.addEventListener('click', function() {
+        rock.style.visibility = 'hidden';
+        paper.style.visibility = 'hidden';
+        scissor.style.visibility = 'hidden';
+    });
+    rock.addEventListener('click', function() {
+
+    });
+    paper.addEventListener('click', function() {
+
+    });
+    scissor.addEventListener('click', function() {
+
+    });
 
     socket.emit('setUsername', username);
 
