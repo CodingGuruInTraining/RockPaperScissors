@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>Intro to WebSockets</title>
+</head>
+
+<body>
+<h1>To be filled in later...</h1>
+
+<div id="rulesDiv">
+    <p>Welcome to this simple game of ROCK..PAPER...SCISSORS!!!</p>
+    <p>Click on the 'Draw' button to begin.</p>
+    <p>After the countdown from 3 (that is 3, 2, 1, GO to be clear), click on the button corresponding with your weapon of choice.</p>
+    <p>Good luck!</p>
+</div>
+<!--TODO figure out how to move to index.js and still work: -->
+<script src="/socket.io/socket.io.js"></script>
+<script>
+    var socket = io.connect('http://localhost:3000');
+    var username = prompt('what is your username?');
+
+    socket.emit('setUsername', username);
+
+    // Example communication.
+    socket.on('message', function(message) {
+//        alert('want a message?: ' + message);
+    });
+</script>
+</body>
+</html>
