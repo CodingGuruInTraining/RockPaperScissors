@@ -8,10 +8,14 @@ var server = http.createServer(function(req, res) {
     });
 });
 
+var players = [];
+var submits = 0;
+
 var io = require('socket.io').listen(server);
 
 io.sockets.on('connection', function(socket) {
     console.log('connection made!');
+    players.add(socket);
     // Example communication.
     socket.emit('message', 'We are connected!');
 // Broadcast isn't working like this, but doesn't crash anything
@@ -21,6 +25,20 @@ io.sockets.on('connection', function(socket) {
         // Creates object variable to hold username.
         // TODO figure out how cookies could be used instead:
         socket.username = username;
+    });
+
+    socket.on('selectedWeapon', function(choice) {
+        socket.weapon = choice;
+        submits++;
+        if (submits == players.length) {
+            var rockWinners = [];
+            var paperWinners = [];
+            var scissorWinners = [];
+
+            for (socket in players) {
+
+            }
+        }
     });
 });
 

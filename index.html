@@ -42,13 +42,13 @@
         scissor.style.visibility = 'hidden';
     });
     rock.addEventListener('click', function() {
-
+        socket.emit('selectedWeapon', 1);
     });
     paper.addEventListener('click', function() {
-
+        socket.emit('selectedWeapon', 2);
     });
     scissor.addEventListener('click', function() {
-
+        socket.emit('selectedWeapon', 3);
     });
 
     socket.emit('setUsername', username);
