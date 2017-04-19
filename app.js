@@ -70,15 +70,15 @@ io.sockets.on('connection', function(socket) {
             console.log(allArrays[1].length + " papers");
             console.log(allArrays[2].length + " scissors");
 
-            for (arr in allArrays) {
-                console.log("array has " + arr.length);
-                console.log(arr.name);
-                console.log(arr);
-                if (arr.length > 1) {
+            for (var i = 0; i < allArrays.length; i++) {
+                // console.log("array has " + arr.length);
+                // console.log(arr.name);
+                // console.log(arr);
+                if (allArrays[i].length > 1) {
                     console.log("tie");
                 }
-                else if (arr.length == 1) {
-                    console.log("Player " + arr[0].username + " wins!");
+                else if (allArrays[i].length == 1) {
+                    console.log("Player " + allArrays[i][0].username + " wins!");
                 }
             }
 
