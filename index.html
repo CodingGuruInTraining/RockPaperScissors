@@ -60,13 +60,13 @@
             scissor.style.visibility = 'visible';
         });
         rock.addEventListener('click', function() {
-            socket.emit('selectedWeapon', 1);
+            socket.emit('selectedWeapon', "rock");
         });
         paper.addEventListener('click', function() {
-            socket.emit('selectedWeapon', 2);
+            socket.emit('selectedWeapon', "paper");
         });
         scissor.addEventListener('click', function() {
-            socket.emit('selectedWeapon', 3);
+            socket.emit('selectedWeapon', "scissors");
         });
 
         socket.emit('setUsername', username);

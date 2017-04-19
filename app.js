@@ -10,12 +10,18 @@ var server = http.createServer(function(req, res) {
 
 var players = [];
 var submits = 0;
+var rockWinners = [];
+var paperWinners = [];
+var scissorWinners = [];
+var allArrays = [];
+allArrays.push(rockWinners);
+allArrays.push(paperWinners);
+allArrays.push(scissorWinners);
 
 var io = require('socket.io').listen(server);
 
 io.sockets.on('connection', function(socket) {
     console.log('connection made!');
-    players.push(socket);
     // Example communication.
     socket.emit('message', 'We are connected!');
 // Broadcast isn't working like this, but doesn't crash anything
@@ -25,41 +31,51 @@ io.sockets.on('connection', function(socket) {
         // Creates object variable to hold username.
         // TODO figure out how cookies could be used instead:
         socket.username = username;
+        players.push(socket);
+        console.log(socket.username + " added");
     });
 
     socket.on('selectedWeapon', function(choice) {
         socket.weapon = choice;
+        console.log(socket.username + " chose " + choice);
         submits++;
+
+        switch (choice) {
+            case "rock":
+                rockWinners.push(socket);
+                break;
+            case "paper":
+                paperWinners.push(socket);
+                break;
+            case "scissors":
+                scissorWinners.push(socket);
+                break;
+        }
+
         if (submits == players.length) {
-            var rockWinners = [];
-            var paperWinners = [];
-            var scissorWinners = [];
+            // var rockWinners = [];
+            // var paperWinners = [];
+            // var scissorWinners = [];
 
-            switch (choice) {
-                case "rock":
-                    rockWinners.push(socket);
-                    break;
-                case "paper":
-                    paperWinners.push(socket);
-                    break;
-                case "scissors":
-                    scissorWinners.push(socket);
-                    break;
-            }
 
-            var allArrays = [];
-            allArrays.push(rockWinners);
-            allArrays.push(paperWinners);
-            allArrays.push(scissorWinners);
+
+            // var allArrays = [];
+            // allArrays.push(rockWinners);
+            // allArrays.push(paperWinners);
+            // allArrays.push(scissorWinners);
 
             for (arr in allArrays) {
+                console.log("array has " + arr.length);
                 if (arr.length > 1) {
                     console.log("tie");
                 }
-                else if (arr.length != 0) {
+                else if (arr.length == 1) {
                     console.log("Player " + arr[0].username + " wins!");
                 }
             }
+
+            submits = 0;
+
 
             // if (players[0].weapon == players[1].weapon) {
             //
