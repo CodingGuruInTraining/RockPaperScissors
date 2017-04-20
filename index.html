@@ -37,11 +37,16 @@
     $(function(){
         var socket = io();
         $('.weapons').hide();
+        $('#messageLog').empty();
+        var gameNumber = 0;
+
 
         $('#drawbtn').click(function() {
             $('.weapons').fadeIn();
             $('#drawbtn').fadeOut();
-            $('#messageLog').empty();
+//            $('#messageLog').empty();
+            gameNumber++;
+            $('#messageLog').append("<br><div class='msg'>--- Game #" + gameNumber + " ---</div>");
         });
 
         $('.weapons').click(function(){
