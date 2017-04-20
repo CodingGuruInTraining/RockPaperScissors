@@ -10,3 +10,27 @@ a {
 #weaponsDiv {
     display: inline-block;
 }
+
+div {
+    font-family: Rockwell;
+    font: 20px Arial, sans-serif;
+}
+
+h1 {
+    color: red;
+}
+
+#rulesDiv {
+    color: green;
+}
+
+#rockbtn {
+    /*background-image: url("./public/images/boulder.png");*/
+    /*background-size: 125px 125px;*/
+    height: 140px;
+    width: 140px;
+}
+
+#countdown {
+    font-size: 40px;
+}

@@ -2,11 +2,13 @@
 <html>
 <head>
     <meta charset="utf-8"/>
-    <title>Intro to WebSockets</title>
+    <meta name="viewport" content="width=device-width initial-scale=1"/>
+    <title>Rock_Paper_Scissors</title>
+    <link rel="stylesheet" href=".public/stylesheets/style.css"/>
 </head>
 
 <body>
-<h1>To be filled in later...</h1>
+<h1>Basic Rock, Paper, Scissors Game</h1>
 
 <div id="rulesDiv">
     <p>Welcome to this simple game of ROCK..PAPER...SCISSORS!!!</p>
@@ -27,11 +29,16 @@
     </span>
 </div>
 
+<div id="countdown"> </div>
+
 <div id="messageLog"></div>
 
 <!--TODO figure out how to move to index.js and still work: -->
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
 <script src="/socket.io/socket.io.js"></script>
+
 
 <script>
     $(function(){
@@ -47,12 +54,18 @@
 //            $('#messageLog').empty();
             gameNumber++;
             $('#messageLog').append("<br><div class='msg'>--- Game #" + gameNumber + " ---</div>");
+            for (var x = 3; x > 0; x--) {
+                setTimeout(function () {
+                    $('#countdown').innerHTML = x + "";
+                }, 3000);
+            }
+            $('#countdown').innerHTML = "heyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy";
         });
 
         $('.weapons').click(function(){
             socket.emit('selectedWeapon', $(this).attr('value'));
             $('.weapons').fadeOut();
-            $('#drawbtn').fadeIn();
+//            $('#drawbtn').fadeIn();
         });
 
         socket.on('message', function(msgstr) {

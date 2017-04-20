@@ -6,6 +6,11 @@ var server = http.createServer(function(req, res) {
         res.writeHead(200, {"Content-Type": "text/html"});
         res.end(content);
     });
+
+    // fs.readFile('./public/stylesheets/style.css', 'utf-8', function(error, content) {
+    //     res.writeHead(200, {"Content-Type": "text/css"});
+    //     res.end(content);
+    // });
 });
 
 var players = [];
@@ -29,7 +34,7 @@ io.sockets.on('connection', function(socket) {
         socket.username = username;
         players.push(socket);
         console.log(socket.username + " added");
-        socket.broadcast.emit('message', 'I guess we have a newcomer, ' + socket.username);
+        socket.broadcast.emit('message', socket.username + ' has joined the game.');
     });
 // Broadcast isn't working like this, but doesn't crash anything
 
