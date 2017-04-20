@@ -33,52 +33,61 @@
 
 <div id="messageLog"></div>
 
+<!--Imports JQuery and socket.io features.-->
 <!--TODO figure out how to move to index.js and still work: -->
-
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-
 <script src="/socket.io/socket.io.js"></script>
 
-
+<!--Client-side functions.-->
 <script>
     $(function(){
+//        Creates object for each connection/user.
         var socket = io();
+        // Hides buttons and clears message area.
         $('.weapons').hide();
         $('#messageLog').empty();
         var gameNumber = 0;
 
-
+//        Adds event handler to Draw button.
         $('#drawbtn').click(function() {
+            // Show weapon buttons and hides Draw button.
             $('.weapons').fadeIn();
             $('#drawbtn').fadeOut();
-//            $('#messageLog').empty();
+//            Increases counter for current game number.
             gameNumber++;
+            // Display 3-2-1 countdown.
             $('#messageLog').append("<br><div class='msg'>--- Game #" + gameNumber + " ---</div>");
             for (var x = 3; x > 0; x--) {
                 setTimeout(function () {
                     $('#countdown').innerHTML = x + "";
-                }, 3000);
+                }, 1000);
             }
-            $('#countdown').innerHTML = "heyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy";
         });
 
+        // Adds event handler to each weapon button.
         $('.weapons').click(function(){
+            // Transmits the button's text value to server and hides buttons.
             socket.emit('selectedWeapon', $(this).attr('value'));
             $('.weapons').fadeOut();
-//            $('#drawbtn').fadeIn();
         });
 
+        // Adds message to log when received from server.
         socket.on('message', function(msgstr) {
             $('#messageLog').append("<div class='msg'>" + msgstr + "</div>");
         });
 
+        // Adds outcome message to log when received from server.
         socket.on('outcome', function(datastr) {
-            console.log(datastr);
             $('#messageLog').append("<div class='msg'>" + datastr + "</div>");
             $('#drawbtn').fadeIn();
         });
 
+        // Asks player for a username.
         var username = prompt('what is your username?');
+        while (username == "" || username == null) {
+            username = prompt('what is your username?');
+        }
+        // Transmits username string to server.
         socket.emit('setUsername', username);
     });
 </script>
