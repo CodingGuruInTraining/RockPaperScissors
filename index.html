@@ -50,50 +50,14 @@
             $('#drawbtn').fadeIn();
         });
 
+        socket.on('outcome', function(datastr) {
+            console.log(datastr);
+            $('#messageLog').append("<p class='msg'>" + datastr + "</p>");
+            $('#drawbtn').fadeIn();
+        });
+
         var username = prompt('what is your username?');
         socket.emit('setUsername', username);
-
-//        var draw = document.getElementById('drawbtn');
-//        var rock = document.getElementById('rockbtn');
-//        var paper = document.getElementById('paperbtn');
-//        var scissor = document.getElementById('scissorbtn');
-
-//        $('#drawbtn').click(function(){
-//            $('.weapons').show('slow');
-//            console.log($('.weapons').innerHTML);
-//        });
-//
-//        $('.weapons').click(function(){
-//
-//        });
-
-
-
-//        rock.style.visibility = 'hidden';
-//        paper.style.visibility = 'hidden';
-//        scissor.style.visibility = 'hidden';
-//
-//        draw.addEventListener('click', function() {
-//            rock.style.visibility = 'visible';
-//            paper.style.visibility = 'visible';
-//            scissor.style.visibility = 'visible';
-//        });
-//        rock.addEventListener('click', function() {
-//            socket.emit('selectedWeapon', "rock");
-//        });
-//        paper.addEventListener('click', function() {
-//            socket.emit('selectedWeapon', "paper");
-//        });
-//        scissor.addEventListener('click', function() {
-//            socket.emit('selectedWeapon', "scissors");
-//        });
-//
-//        socket.emit('setUsername', username);
-//
-//        // Example communication.
-//        socket.on('message', function(message) {
-////        alert('want a message?: ' + message);
-//        });
     });
 </script>
 </body>

@@ -10,13 +10,14 @@ var server = http.createServer(function(req, res) {
 
 var players = [];
 var submits = 0;
-var rockWinners = [];
-var paperWinners = [];
-var scissorWinners = [];
-var allArrays = [];
-allArrays.push(rockWinners);
-allArrays.push(paperWinners);
-allArrays.push(scissorWinners);
+
+var rocks = [];
+var papers = [];
+var scissors = [];
+// var allArrays = [];
+// allArrays.push(rocks);
+// allArrays.push(papers);
+// allArrays.push(scissors);
 
 var io = require('socket.io').listen(server);
 
@@ -41,107 +42,73 @@ io.sockets.on('connection', function(socket) {
         submits++;
 
         switch (choice) {
-            case "rock":
-                rockWinners.push(socket);
+            case "ROCK":
+                rocks.push(socket);
                 break;
-            case "paper":
-                paperWinners.push(socket);
+            case "PAPER":
+                papers.push(socket);
                 break;
-            case "scissors":
-                scissorWinners.push(socket);
+            case "SCISSORS":
+                scissors.push(socket);
                 break;
         }
 
         if (submits == players.length) {
 
-            for (var x = 0; x < players.length; x++) {
-                for (var y = 0; y < players.length; y++) {
-                    if (players[x] != players[y]) {
-                        if (players[x].weapon == players[y].weapon) {
-                            console.log("tie");
-                            break;
-                        }
-                        else if (players[x].weapon == "rock") {
-                            if (players[y].weapon == "paper") {
-                                console.log("Player " + players[y].username + " wins");
-                            } else {
-                                console.log("Player " + players[x].username + " wins");
-                            }
-                        }
-                        else if (players[x].weapon == "paper") {
-                            if (players[y].weapon == "scissors") {
-                                console.log("Player " + players[x].username + " wins");
-                            } else {
-                                console.log("Player " + players[y].username + " wins");
-                            }
-                        }
-                    }
+            // if (rocks.length > 1) { }
 
-
-                }
-            }
-
-            // var rockWinners = [];
-            // var paperWinners = [];
-            // var scissorWinners = [];
-
-
-
-            // var allArrays = [];
-            // allArrays.push(rockWinners);
-            // allArrays.push(paperWinners);
-            // allArrays.push(scissorWinners);
-
-            // console.log(allArrays.length + " arrays in array");
-            //
-            // console.log(allArrays[0].length + " rocks");
-            // console.log(allArrays[1].length + " papers");
-            // console.log(allArrays[2].length + " scissors");
+            if (rocks.length > 0 && papers.length > 0) { emitWins(papers, rocks); }
+            if (rocks.length > 0 && scissors.length > 0) { emitWins(rocks, scissors); }
+            if (papers.length > 0 && scissors.length > 0) { emitWins(scissors, papers); }
 
 
 
 
-
-            // for (var i = 0; i < allArrays.length; i++) {
-            //     // console.log("array has " + arr.length);
-            //     // console.log(arr.name);
-            //     // console.log(arr);
-            //     if (allArrays[i].length > 1) {
-            //         console.log("tie");
-            //     }
-            //     else if (allArrays[i].length == 1) {
-            //         console.log("Player " + allArrays[i][0].username + " wins!");
+            // for (var x = 0; x < players.length; x++) {
+            //     for (var y = 0; y < players.length; y++) {
+            //         if (players[x] != players[y]) {
+            //             if (players[x].weapon == players[y].weapon) {
+            //                 console.log("tie");
+            //                 break;
+            //             }
+            //             else if (players[x].weapon == "rock") {
+            //                 if (players[y].weapon == "paper") {
+            //                     console.log("Player " + players[y].username + " wins");
+            //                 } else {
+            //                     console.log("Player " + players[x].username + " wins");
+            //                 }
+            //             }
+            //             else if (players[x].weapon == "paper") {
+            //                 if (players[y].weapon == "scissors") {
+            //                     console.log("Player " + players[x].username + " wins");
+            //                 } else {
+            //                     console.log("Player " + players[y].username + " wins");
+            //                 }
+            //             }
+            //         }
             //     }
             // }
-
-
 
 
 
 
 
             submits = 0;
-
-
-            // if (players[0].weapon == players[1].weapon) {
-            //
-            // }
-            // else if (players[0].weapon == "rock" && players[1].weapon == "paper") {
-            //
-            // }
-            // else if (players[0].weapon == "paper" && players[1].weapon == "scissors") {
-            //
-            // }
-            //
-            // for (var i = 0; i < players.length; i++) {
-            //     if (players[i])
-            //     // for (var i = 0; i < players.length; i++) {
-            //     //
-            //     // }
-            // }
+            rocks.length = 0;
+            papers.length = 0;
+            scissors.length = 0;
         }
     });
 });
+
+function emitWins(winners, losers) {
+    for (var x = 0; x < winners.length; x++) {
+        for (var y = 0; y < losers.length; y++) {
+            io.sockets.emit('outcome', winners[x].username + " beats " + losers[y].username);
+            break;
+        }
+    }
+}
 
 server.listen(3000);
 
