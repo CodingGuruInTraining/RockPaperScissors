@@ -50,9 +50,13 @@
             $('#drawbtn').fadeIn();
         });
 
+        socket.on('message', function(msgstr) {
+            $('#messageLog').append("<div class='msg'>" + msgstr + "</div>");
+        });
+
         socket.on('outcome', function(datastr) {
             console.log(datastr);
-            $('#messageLog').append("<p class='msg'>" + datastr + "</p>");
+            $('#messageLog').append("<div class='msg'>" + datastr + "</div>");
             $('#drawbtn').fadeIn();
         });
 
