@@ -26,6 +26,9 @@
         <input type="button" value="SCISSORS" id="scissorbtn" class="weapons">
     </span>
 </div>
+
+<div id="messageLog"></div>
+
 <!--TODO figure out how to move to index.js and still work: -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script src="/socket.io/socket.io.js"></script>
@@ -33,11 +36,27 @@
 <script>
     $(function(){
         var socket = io();
+        $('.weapons').hide();
+
+        $('#drawbtn').click(function() {
+            $('.weapons').fadeIn();
+            $('#drawbtn').fadeOut();
+            $('#messageLog').empty();
+        });
+
+        $('.weapons').click(function(){
+            socket.emit('selectedWeapon', $(this).attr('value'));
+            $('.weapons').fadeOut();
+            $('#drawbtn').fadeIn();
+        });
+
         var username = prompt('what is your username?');
-        var draw = document.getElementById('drawbtn');
-        var rock = document.getElementById('rockbtn');
-        var paper = document.getElementById('paperbtn');
-        var scissor = document.getElementById('scissorbtn');
+        socket.emit('setUsername', username);
+
+//        var draw = document.getElementById('drawbtn');
+//        var rock = document.getElementById('rockbtn');
+//        var paper = document.getElementById('paperbtn');
+//        var scissor = document.getElementById('scissorbtn');
 
 //        $('#drawbtn').click(function(){
 //            $('.weapons').show('slow');
@@ -50,31 +69,31 @@
 
 
 
-        rock.style.visibility = 'hidden';
-        paper.style.visibility = 'hidden';
-        scissor.style.visibility = 'hidden';
-
-        draw.addEventListener('click', function() {
-            rock.style.visibility = 'visible';
-            paper.style.visibility = 'visible';
-            scissor.style.visibility = 'visible';
-        });
-        rock.addEventListener('click', function() {
-            socket.emit('selectedWeapon', "rock");
-        });
-        paper.addEventListener('click', function() {
-            socket.emit('selectedWeapon', "paper");
-        });
-        scissor.addEventListener('click', function() {
-            socket.emit('selectedWeapon', "scissors");
-        });
-
-        socket.emit('setUsername', username);
-
-        // Example communication.
-        socket.on('message', function(message) {
-//        alert('want a message?: ' + message);
-        });
+//        rock.style.visibility = 'hidden';
+//        paper.style.visibility = 'hidden';
+//        scissor.style.visibility = 'hidden';
+//
+//        draw.addEventListener('click', function() {
+//            rock.style.visibility = 'visible';
+//            paper.style.visibility = 'visible';
+//            scissor.style.visibility = 'visible';
+//        });
+//        rock.addEventListener('click', function() {
+//            socket.emit('selectedWeapon', "rock");
+//        });
+//        paper.addEventListener('click', function() {
+//            socket.emit('selectedWeapon', "paper");
+//        });
+//        scissor.addEventListener('click', function() {
+//            socket.emit('selectedWeapon', "scissors");
+//        });
+//
+//        socket.emit('setUsername', username);
+//
+//        // Example communication.
+//        socket.on('message', function(message) {
+////        alert('want a message?: ' + message);
+//        });
     });
 </script>
 </body>
