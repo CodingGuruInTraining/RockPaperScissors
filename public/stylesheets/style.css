@@ -12,12 +12,7 @@ a {
 }
 
 div {
-    font-family: Rockwell;
-    font: 20px Arial, sans-serif;
-}
-
-h1 {
-    color: red;
+    font: 20px Rockwell, sans-serif;
 }
 
 #rulesDiv {
