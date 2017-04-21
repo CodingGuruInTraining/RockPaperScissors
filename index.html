@@ -4,7 +4,7 @@
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width initial-scale=1"/>
     <title>Rock_Paper_Scissors</title>
-    <link rel="stylesheet" href=".public/stylesheets/style.css"/>
+    <link rel="stylesheet" href="/stylesheets/style.css"/>
 </head>
 
 <body>
@@ -30,7 +30,7 @@
     </span>
 </div>
 
-<div id="countdown"> </div>
+<div id="countdown"></div>
 
 <div id="messageLog"></div>
 
@@ -52,17 +52,43 @@
 //        Adds event handler to Draw button.
         $('#drawbtn').click(function() {
             // Show weapon buttons and hides Draw button.
-            $('.weapons').fadeIn();
+//            $('.weapons').fadeIn();
             $('#drawbtn').fadeOut();
 //            Increases counter for current game number.
             gameNumber++;
             // Display 3-2-1 countdown.
             $('#messageLog').append("<br><div class='msg'>--- Game #" + gameNumber + " ---</div>");
-            for (var x = 3; x > 0; x--) {
-                setTimeout(function () {
-                    $('#countdown').innerHTML = x + "";
-                }, 1000);
-            }
+
+//            var x = 3;
+//            console.log(x.toString());
+//            $('#countdown').fadeIn();
+//            $('#countdown').innerText = "3";
+//            while (x > 0) {
+//                setTimeout(function() {
+//                    $('#countdown').text = x;
+//                },3000);
+//                x--;
+//            }
+
+//            var x = 3;
+//            var interval = setInterval(function () {
+//                $('#countdown').html = x;
+//                x--;
+//                if (x == 0) {
+//                    $('#countdown').html = "";
+//                    clearInterval(interval);
+//                }
+//            },1000);
+
+
+//            for (var x = 3; x > 0; x--) {
+//                setTimeout(function () {
+//                    $('#countdown').html ="" + x + "";
+//                }, 1000);
+//            }
+
+
+            $('.weapons').fadeIn();
         });
 
         // Adds event handler to each weapon button.
