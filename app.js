@@ -91,7 +91,7 @@ function emitTies(tiers) {
     io.sockets.emit('outcome', tiersStr + " Tied");
 }
 
-server.listen(3000);
+server.listen(process.env.PORT || '3000');
 
 // MOST helpful site I've come across! (structure above adopted from site):
 // https://openclassrooms.com/courses/ultra-fast-applications-using-node-js/socket-io-let-s-go-to-real-time
